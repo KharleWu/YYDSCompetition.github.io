@@ -1,0 +1,29 @@
+= SUNUS
+
+:imagesdir: img
+
+24h based clockface with integrated visualizations of the daily solar events 🌞 — https://devidw.github.io/sunus/[Live View]
+
+image::sunus.png[Sunus, 200]
+
+Clockface of the 24h based day with focus on solar data.
+Sunrise, sunset and twilights times are illustrated as circular shapes over the full circle aka 24h day. Based on that  you can read out all these times as well as get a really quick summary about the complete solar activity for today (or a given other day). Furthermore the clock hand is illustrated as our sun passing the day. So you can even get the current time out of the diagram.
+
+.through the year
+|===
+^| Spring ^| Summer ^| Fall ^| Winter
+
+^a| image:spring.png[Sunus, 100]
+^a| image:summer.png[Sunus, 100]
+^a| image:fall.png[Sunus, 100]
+^a| image:winter.png[Sunus, 100]
+
+^| 2021-03-20 +
+   10:37
+^| 2021-06-21 +
+   05:32
+^| 2021-09-22 +
+   21:21
+^| 2021-12-21 +
+   16:59
+|===

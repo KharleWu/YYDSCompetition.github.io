@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>three.js css3d - periodic table</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+  <link href="./main.css" rel="stylesheet">
+</head>
+
+<body>
+  <script src="js/three.min.js"></script>
+  <script src="js/libs/tween.min.js"></script>
+  <script src="js/controls/TrackballControls.js"></script>
+  <script src="js/renderers/CSS3DRenderer.js"></script>
+  <script src="js/controls/OrbitControls.js"></script>
+
+  <!-- <div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js css3d</a> - periodic table. <a
+      href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran" target="_blank" rel="noopener">info</a>.
+  </div> -->
+  <div id="container">
+    <div class="canvas" id="canvas"></div>
+  </div>
+  <div id="title">
+    <button id="t" onclick= "window.location.href = '../index.html'">各国首批人造卫星</button>
+    </div>
+
+  <div id="back">
+    <button id="page" onclick= "window.location.href = '../index.html'">首页</button>
+    </div>
+    
+  <div id="change">
+  <button id="next" onclick= "window.location.href = 'satellite/index.html'">下一站</button>
+  </div>
+
+ 
+  <div id="menu">
+    <button id="table">时间轴</button>
+    <button id="sphere">球体</button>
+    <button id="helix">螺旋</button>
+    <button id="grid">网格</button>
+   <!-- <button id="showBGC">ShowBGC</button> -->
+    <!-- <button id="showImage">ShowImage</button> -->
+  </div>
+
+  <script src="./main.js"></script>
+
+</body>
+
+</html>

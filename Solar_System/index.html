@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeJs太阳系</title>
+    <link rel="stylesheet" type="text/css" href="./src/style.css">
+</head>
+
+<body>
+
+  <div id="btn">
+    <button class="back"><a href="#" onClick="javascript :history.go(-1);">返回</a></button>
+  </div>
+
+  <div id="light" class="white_content">
+    <p id="inner_context">初始内容</p>
+    <div id="main"  class="echart_1">
+</div>
+  
+</div> 
+
+  <!-- <div id="close_button" class="white_button">
+    <a id="close" href = "javascript:void(0)" onclick = "closeDialog()">点这里关闭本窗口</a>
+  </div> -->
+
+<div id="fade" class="black_overlay"></div>
+
+  <div class="introduce">
+    <div class="title">
+    <span style='margin-top:12px;color:white;  display:block'>  太阳系</span>
+    <span>Solar System</span>
+    </div>
+  </div>
+  <canvas class="webgl"></canvas>
+</body>
+
+
+<script type="text/javascript" src = "src/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src = "src/echarts.js"></script>
+<script type="text/javascript" src = "src/echarts-gl.min.js"></script>
+<script type="module">
+//import './style.css'
+import * as THREE from './build/three.module.js'
+import { OrbitControls } from './src/OrbitControls.js'
+
+console.log("excute");
+/**
+ * Base
+ */
+// Canvas
+const canvas = document.querySelector('canvas.webgl')
+canvas.width = window.innerWidth
+canvas.height = window.innerHeight
+/**
+ * Sizes
+ */
+const sizes = {
+  width: window.innerWidth,
+  height: window.innerHeight
+}
+/**
+ * Renderer
+ */
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  antialias: true
+})
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.shadowMap.enabled = true
+renderer.shadowMapSoft = true
+renderer.setClearColor(0xffffff, 0)
+
+// Scene
+const scene = new THREE.Scene()
+// Textures
+const textureLoader = new THREE.TextureLoader()
+
+/**
+ * Camera
+ */
+// Base camera
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 1, 3000)
+const localPosition = { x: -200, y: 50, z: 0 } //存储初始化位置
+camera.position.set(localPosition.x, localPosition.y, localPosition.z)
+scene.add(camera)
+
+// OrbitControls
+const Controls = new OrbitControls(camera, renderer.domElement)
+Controls.minDistance = 20
+Controls.maxDistance = 1000
+Controls.enableDamping = true
+// Controls.autoRotate = true
+
+
+
+/*echarts
+*/
+//import * as echarts from 'echarts';
+
+$(function()
+
+{
+  
+var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
+var option;
+
+// Schema:
+// date,AQIindex,PM2.5,PM10,CO,NO2,SO2
+const data1 = [[2440, 0.055, 0.24, 0.33, 167, 46]];
+var data2 = [[6052, 0.815, 0.63, 0.9, 460, 108]];
+var data3 = [[6371, 1, 1, 1, 14.9, 150]];
+var data4 = [[3389, 0.107, 1.9, 0.4, -63, 230]];
+var data5 = [[69911, 317.8, 11.9, 2.4, -110, 780]];
+var data6 = [[58232, 95.2, 29.5, 0.9, -140, 1400]];
+var data7 = [[25362, 14.5, 84, 0.9, -197, 2900]];
+var data8 = [[24622, 17.1, 164.8, 1.1, -200, 4500]];
+
+var schema = [
+  { name: 'Radius', index: 0, text: '半径(km)' },
+  { name: 'Earth mass', index: 1, text: '地球质量' },
+  { name: 'Orbit', index: 2, text: '轨道(years)' },
+  { name: 'gravity', index: 3, text: '重力(g)' },
+  { name: 'ave', index: 4, text: ' 平均温度(℃)' },
+  { name: 'distance', index: 5, text: '离太阳距离(million km)' }
+];
+var lineStyle = {
+  width: 4,
+  opacity: 0.9
+};
+option = {
+  backgroundColor: '#fff',
+  legend: {
+    bottom: 30,
+    data: ['水星', '金星', '地球', '火星', '木星', '土星', '天王星', '海王星'],
+    itemGap: 20,
+    textStyle: {
+      color: '#333',
+      fontSize: 14
+    }
+  },
+  tooltip: {
+    padding: 10,
+    backgroundColor: '#222',
+    borderColor: '#777',
+    borderWidth: 1
+    // formatter(params)
+    // {
+    //   for(x in params){
+    //     return params[x].data;
+    //   }
+
+    // }
+  },
+  parallelAxis: [
+    {
+      dim: 0,
+      name: schema[0].text,
+      max: 70000
+    },
+    { dim: 1, name: schema[1].text, max: 320 },
+    { dim: 2, name: schema[2].text, max: 180 },
+    { dim: 3, name: schema[3].text, max: 2.5 },
+    { dim: 4, name: schema[4].text, max: 500, min: -200 },
+    { dim: 5, name: schema[5].text, max: 5000 }
+  ],
+  // visualMap: {
+  //   show: true,
+  //   min: 0,
+  //   max: 150,
+  //   dimension: 2,
+  //   //inRange: {
+  //   //  color: ['#d94e5d', '#eac736', '#50a3ba'].reverse()
+  //     // colorAlpha: [0, 1]
+  //   //}
+  // },
+  parallel: {
+    left: '5%',
+    right: '18%',
+    bottom: 100,
+    parallelAxisDefault: {
+      type: 'value',
+      name: 'Earth mass',
+      nameLocation: 'end',
+      nameGap: 20,
+      nameTextStyle: {
+        color: '#333',
+        fontSize: 10
+      },
+      axisLine: {
+        lineStyle: {
+          color: '#aaa'
+        }
+      },
+      axisTick: {
+        lineStyle: {
+          color: '#777'
+        }
+      },
+      splitLine: {
+        show: false
+      },
+      axisLabel: {
+        color: '#333'
+      }
+    }
+  },
+  series: [
+    {
+      name: '水星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data1
+    },
+    {
+      name: '金星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data2
+    },
+    {
+      name: '地球',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data3
+    },
+    {
+      name: '火星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data4
+    },
+    {
+      name: '木星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data5
+    },
+    {
+      name: '土星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data6
+    },
+    {
+      name: '天王星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data7
+    },
+    {
+      name: '海王星',
+      type: 'parallel',
+      lineStyle: lineStyle,
+      data: data8
+    }
+  ]
+};
+
+option && myChart.setOption(option);
+
+})
+
+
+/**
+ * Raycaster
+ */
+const raycaster = new THREE.Raycaster()
+let currentIntersect = null
+/**
+ * Balls
+ */
+//太阳系
+const SunSystem = new THREE.Object3D()
+scene.add(SunSystem)
+
+const stars = []
+//添加太阳
+loadPlanet('sun', 14, 0, 0.001, 0);
+//添加水星
+loadPlanet('mercury', 2, 20, 0.05, 2.5);
+//添加金星
+loadPlanet('venus', 4, 30, 0.05, 2.3);
+//添加地球
+loadPlanet('earth', 5, 50, 0.05, 2.1);
+//添加火星
+loadPlanet('mars', 6, 75, 0.05, 1.9);
+//添加木星
+loadPlanet('jupiter', 13, 100, 0.05, 1.7);
+//添加土星
+loadPlanet('saturn', 11, 140, 0.05, 1.5);
+//添加天王星
+loadPlanet('uranus', 9, 170, 0.05, 1.3);
+//添加海王星
+loadPlanet('neptune', 7, 190, 0.05, 1);
+//添加星星
+const particles = Particles();
+scene.add(particles);
+
+//创建球体需要给予一些属性 //名字 自身半径 轨道半径 自转速度 公转速度
+function loadPlanet(name, radius, Radius, V_Self, V_Sun) {
+  //新建基础球
+  const planetSystem = new THREE.Mesh(
+    new THREE.SphereGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial()
+  )
+  const material = new THREE.MeshBasicMaterial({
+    map: textureLoader.load(`static/${name}.jpg`)
+  })
+  //创建完整球形态
+  const planet = new THREE.Mesh(new THREE.SphereGeometry(radius, 30, 30), material)
+  //赋值属性
+  planet.V_Self = V_Self
+  planet.V_Sun = V_Sun
+  planet.Radius = Radius
+  planet.name = name
+  stars.push(planet)
+  planetSystem.add(planet)
+  // if ('地球') 
+  if (name === 'earth') {
+    const moonMaterial = new THREE.MeshBasicMaterial({
+      map: textureLoader.load(`static/moon.jpg`)
+    })
+    //创建月球
+    const moon = new THREE.Mesh(new THREE.SphereGeometry(2, 30, 30), moonMaterial)
+    moon.radius = 1
+    planet.add(moon)
+  }
+  // if ('土星') 
+  if (name === 'saturn') {
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      map: textureLoader.load(`static/${name}_rings.jpg`),
+      side: THREE.DoubleSide
+    })
+    //创建圆环
+    const ring = new THREE.Mesh(
+      new THREE.RingGeometry(radius * 1.2, radius * 1.5, 64, 1),
+      ringMaterial)
+    ring.rotation.x = -Math.PI / 2
+    planet.add(ring)
+  }
+  //创建轨道
+  const track = new THREE.Mesh(
+    new THREE.RingGeometry(Radius, Radius + 0.05, 64, 1),
+    new THREE.MeshBasicMaterial({
+      side: THREE.DoubleSide
+    }))
+  track.rotation.x = -Math.PI / 2
+  scene.add(track)
+  SunSystem.add(planetSystem)
+  return planetSystem
+}
+//星空粒子创建
+function Particles() {
+  const particles = 20000
+  let bufferGeometry = new THREE.BufferGeometry()
+  let positions = new Float32Array(particles * 3)
+  let colors = new Float32Array(particles * 3)
+
+  let color = new THREE.Color()
+  const gap = 1000
+
+  for (let i = 0; i < positions.length; i += 3) {
+    let x = (Math.random() * gap * 2) * (Math.random() < .5 ? -1 : 1)
+    let y = (Math.random() * gap * 2) * (Math.random() < .5 ? -1 : 1)
+    let z = (Math.random() * gap * 2) * (Math.random() < .5 ? -1 : 1)
+
+    let biggest = Math.abs(x) > Math.abs(y) ? (Math.abs(x) > Math.abs(z) ? 'x' : 'z') : (Math.abs(y) > Math.abs(z) ? 'y' : 'z')
+
+    let pos = { x, y, z }
+
+    if (Math.abs(pos[biggest]) < gap) pos[biggest] = pos[biggest] < 0 ? -gap : gap
+
+    x = pos['x']
+    y = pos['y']
+    z = pos['z']
+
+    positions[i] = x
+    positions[i + 1] = y
+    positions[i + 2] = z
+
+
+    colors[i] = color.r
+    colors[i + 1] = color.g
+    colors[i + 2] = color.b
+  }
+
+  bufferGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+  bufferGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+  // 计算当前几何体的的边界球形
+  bufferGeometry.computeBoundingSphere()
+
+  let material = new THREE.PointsMaterial({
+    size: 6,
+    vertexColors: THREE.VertexColors
+  })
+  const particleSystem = new THREE.Points(bufferGeometry, material)
+
+  return particleSystem
+}
+// 鼠标移动获取物体对象
+const mouse = new THREE.Vector2()
+function rayCatch() {
+  raycaster.setFromCamera(mouse, camera)
+  const intersects = raycaster.intersectObjects(stars)
+  if (intersects.length) {
+    if (!currentIntersect) {
+      document.querySelector("body").style.cursor = "pointer";
+    }
+    currentIntersect = intersects[0]
+  }
+  else {
+    if (currentIntersect) {
+      document.querySelector("body").style.cursor = "default";
+    }
+    currentIntersect = null
+  }
+}
+/**
+ * Mouse
+ */
+window.addEventListener('mousemove', (event) => {
+  mouse.x = event.clientX / sizes.width * 2 - 1
+  mouse.y = - (event.clientY / sizes.height) * 2 + 1
+  rayCatch()
+})
+
+const btn = document.querySelector('#btn')
+const title = document.querySelector('.title')
+let targetStar;
+let S_title
+let Sub_title
+
+btn.onclick = function () {
+  currentIntersect = null
+  targetStar = null
+  Controls.target = SunSystem.position
+  Controls.object.position.set(localPosition.x, localPosition.y, localPosition.z)
+  title.innerHTML = "<span style='font-size:22px; color:white;  display:block;'>太阳系</span>"+ 
+    "<span style='font-size:20px; color:white;  text-align: center;'>Solar System</span>";
+  document.getElementById('light').style.display='none';
+  document.getElementById('main').style.display='none';
+}
+
+
+// title.onclick = function () {
+//   document.getElementById('light').style.display='block';
+//   document.getElementById('close_button').style.display='block';
+//   document.getElementById('light').innerHTML=S_title;
+// }
+// document.querySelector('#close').onclick= function(){
+//             document.getElementById('light').style.display='none';}
+            // document.getElementById('fade').style.display='none'}
+
+window.addEventListener('click', () => {
+  if (currentIntersect) {
+    targetStar = scene.getObjectByName(currentIntersect.object.name);
+    Controls.target = targetStar.position
+    document.getElementById('light').style.display='block';
+    document.getElementById('main').style.display='block';
+    switch (currentIntersect.object.name) {
+      case 'sun':
+        S_title = '太阳'
+        Sub_title='Sun'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block; height:80px'>"+S_title+"</span>"
+              +"<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>行星和太阳系是由一颗大质量恒星作为超新星爆炸时留下的巨大气体和尘埃粒子云形成的。"+
+          "气体在太空中漂移，人们认为附近的另一次超新星爆炸可能导致压力波穿过云层，从而导致聚集。当物质聚集在一起时，该区域的引力变得更强，吸引了更多的物质，从而增加了引力。随着越来越多的物质落向高密度区域，由于动量守恒，它开始旋转——就像水从塞孔流入。结果是，随着重力的增强，自旋变得更快，导致一个由气体和尘埃组成的扁平圆盘围绕着一个中心的高密度气体球。"+
+          "重力也在旋转的气体和尘埃盘内起作用，将物质拉到一起，在气体盘内形成原始行星。</span>"
+              
+              "</div>";
+        break;
+      case 'mercury':
+        S_title = '水星'
+        Sub_title ='Mercury'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>水星是离太阳最近的行星。然而，它并不是太阳系中最热的。因为它几乎没有大气层，这意味着太阳的热量不能从白天传输到夜间。因此，阳光面变得非常热（+430℃），而阴影面变得非常冷（-180℃）。"+
+                " 这是太阳系中所有行星中最狂野的温度范围。平均温度约为+167℃。</span>"
+                +"<span style='font-size:17px; color:white;  display:block; padding-top: 20px;padding-left:40px;padding-right:40px'>水星的轨道是所有行星中最偏心的，这意味着它的轨道是最不圆的。距离太阳4600万公里（2900万英里）变为7000万公里（4350万英里）。</span>"
+            
+              "</div>";
+        break;
+      case 'venus':
+        S_title = '金星'
+        Sub_title='Venus'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>金星是距离太阳第二近的行星，在1.08亿公里处以近乎圆形的轨道运行。在绕轨道运行时，金星比太阳系中的任何其他行星都更接近地球，可以到达大约4000万公里以内。</span>"
+                +"<span style='font-size:17px; color:white;  display:block; padding-top: 20px; padding-left:40px;padding-right:40px'>金星绕太阳公转大约需要225个地球日，并且以每243天一次的极慢速度自转——而且是顺时针方向（从太阳北极往下看）。由于旋转和轨道运动的方向，金星上的一天（中午到中午）持续117个地球日。因此，尽管金星的自转速度是所有行星中最慢的，但在金星上的一天比在水星上的一天要短。</span>"
+            
+              "</div>";
+        break;
+      case 'earth':
+        S_title = '地球'
+        Sub_title='Earth'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>地球是距离太阳最近的第三颗行星，也是最大、密度最大的内行星。地球以1.5亿公里的圆轨道运行，是第一个拥有月球的行星。</span>"
+                +"<span style='font-size:17px; color:white;  display:block; padding-top:40px; padding-left:40px;padding-right:40px'>地球被认为有45.4亿年的历史，大部分时间都与月球相伴。据信，月球是由一个火星大小的大天体撞击地球，导致足够多的物质被喷射出来，最终合并成月球而形成的。月球具有稳定地球轴向倾斜的作用，是地球海洋潮汐的来源。</span>"
+            
+              "</div>";
+        break;
+      case 'mars':
+        S_title = '火星'
+        Sub_title='Mars'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>火星绕太阳运行大约需要686个地球日。它的倾斜（25.1°）和旋转周期（24小时37分钟）都与地球相似，一天（日出到日出）持续24小时39分钟。由于倾斜，它也有和地球一样的季节。</span>"
+                +"<span style='font-size:17px; color:white;  padding-top:20px;display:block; padding-left:40px;padding-right:40px'>由于火星不再有磁场来保护它，受太阳风与大气层相互作用的影响，火星失去了它原来的大气层，导致原子消失在太空中。宇宙飞船已经探测到原子流尾随进入火星后面的太空。因此，火星上的大气压力是地球的1%。它主要由（95%）二氧化碳组成。</span>"
+              "</div>";
+        break;
+      case 'jupiter':
+        S_title = '木星'
+        Sub_title='Jupiter'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>木星是距离太阳最近的第五颗行星，也是第一颗所谓的外行星（位于小行星带之外）。它是迄今为止太阳系中最大的行星，质量是所有其他行星加在一起的两倍半，质量是太阳的千分之一。</span>"
+                +"<span style='font-size:17px; color:white;  padding-top:20px;display:block; padding-left:40px;padding-right:40px'>木星每12年绕太阳运行一次（约7.8亿公里），由气体（75%的氢和24%的氦）组成，据推测，它有一个岩石核心，周围是液态金属氢的海洋，形成一个直径为11万公里的球体。"+
+                  "高层大气中有一层50公里厚的云层。这些云是由氨晶体和其他化合物组成的，它们被排列成带，在不同的纬度以不同的速度移动。大红斑是一个巨大的稳定风暴漩涡，位于两层之间。</span>"
+              "</div>";
+        break;
+      case 'saturn':
+        S_title = '土星'
+        Sub_title='Saturn'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>土星的核心非常热（11700℃），它产生的热量比从太阳接收的热量要多。离行星中心越远，温度越低，高层大气温度达到-180度左右，350公里深的温度达到0度左右。</span>"
+                +"<span style='font-size:17px; color:white;  padding-top:10px;display:block; padding-left:40px;padding-right:40px'>土星最著名的是它的光环系统。这些光环在土星表面上方7000公里到120000公里之间延伸,它们的厚度在1公里到10米之间，主要由大小从灰尘到几米宽的巨石的冰粒组成。"+
+                  "最近的观测发现，由于某些卫星的轨道倾斜，环中存在一些扭曲，导致粒子从正常环平面上升约4km。这些光环被认为是在轨道上被摧毁的月球的残余物，或者仅仅是太阳系形成时留下的物质。</span>"
+              "</div>";
+        break;
+      case 'uranus':
+        S_title = '天王星'
+        Sub_title='Uranus'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>天王星每84年绕太阳运行一次（约2.9亿公里），但不同寻常的是它会侧身自转（轴向倾斜97度）。这意味着它的卫星和它的暗环系统也在垂直于黄道平面的平面上运行。</span>"
+                +"<span style='font-size:17px; color:white;  padding-top:20px;display:block; padding-left:40px;padding-right:40px'>天王星的另一个奇怪之处是它非常冷。所有其他气态巨行星由于极热的内核而释放出的热辐射比它们接收到的要多，但天王星没有。天王星的大气温度为-224℃，是太阳系中最冷的。</span>"
+              "</div>";
+        break;
+        case 'neptune':
+        S_title = '海王星'
+        Sub_title='Neptune'
+        document.getElementById('inner_context').innerHTML="<div style = 'height:200px'>"+
+            "<span style='font-size:35px; color:white;  display:block;height:80px'>"+S_title+"</span>"
+              +
+              "<span style='font-size:17px; color:white;  display:block; padding-left:40px;padding-right:40px'>天王星每165年绕太阳运行一次，距离约4.5亿公里。这是太阳到地球距离的30倍，这意味着海王星的太阳光强度是其在地球上强度的1%。</span>"
+                +"<span style='font-size:17px; color:white;  padding-top:20px;display:block; padding-left:40px;padding-right:40px'>与天王星几乎完全平淡的云层不同，海王星的天气系统更加明显，在南半球和北半球可以看到巨大的黑点风暴系统，以及其他可见的带状区域。还观察到风速高达600米/秒。由于距离太阳很远，这颗行星是最冷的行星之一，高层大气温度为-220℃，这并不奇怪。地核被认为在5200℃左右。</span>"
+              "</div>";
+        break;
+    }
+    console.log(S_title);
+    title.innerHTML = "<span style='margin-top:12px;font-size:17px; color:white;  display:block;'>"+S_title+"</span>"+ 
+    "<span style='font-size:17px; color:white;  text-align: center;'>"+Sub_title+"</span>";
+  }
+})
+
+window.addEventListener('resize', () => {
+  // Update sizes
+  sizes.width = window.innerWidth
+  sizes.height = window.innerHeight
+
+  // Update camera
+  camera.aspect = sizes.width / sizes.height
+  camera.updateProjectionMatrix()
+
+
+  // Update renderer
+  renderer.setSize(sizes.width, sizes.height)
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+
+
+})
+
+
+
+
+/**
+ * Animate
+ */
+
+const clock = new THREE.Clock()
+const random = Math.random() * 10
+
+const tick = () => {
+  const elapsedTime = clock.getElapsedTime()
+
+  //考虑到自转和公转，所以通过两层来控制物体的运动
+  for (var i = 0; i < stars.length; i++) {
+    const planet = stars[i]
+    planet.position.set(
+      Math.sin(elapsedTime * planet.V_Sun * 0.1) * planet.Radius,
+      0,
+      Math.cos(elapsedTime * planet.V_Sun * 0.1) * planet.Radius,
+    );
+    if (targetStar) {
+      if (targetStar.name === planet.name) {
+        camera.position.set(
+          Math.sin(elapsedTime * 0.1) * 40 + planet.position.x * 0.3,
+          20,
+          Math.cos(elapsedTime * 0.1) * 40 + planet.position.z * 0.3,
+        );
+      }
+    }
+    if (planet.name === 'earth') {
+      planet.children[0].position.set(
+        Math.sin(elapsedTime * 0.1) * planet.children[0].radius + planet.position.x * 0.2,
+        0,
+        Math.cos(elapsedTime * 0.1) * planet.children[0].radius + planet.position.z * 0.2,
+      );
+    }
+    planet.rotation.y += planet.V_Self
+  }
+  // Update controls
+  Controls.update()
+  // Render
+  renderer.render(scene, camera)
+  // Call tick again on the next frame
+  window.requestAnimationFrame(tick)
+}
+
+tick()
+</script>
+</html>

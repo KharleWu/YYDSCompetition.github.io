@@ -1,0 +1,270 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=iron-globe&gl=1
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+        <style>
+          #nav {
+                    line-height:30px;
+                    height:750px;
+                    width:630px; 
+                    /* 700 */
+                    float:left;
+                    /* padding:5px;	       */
+                }
+          .cover{
+                    width: 100%;
+                    height: 750px;	
+
+                    background-image: url('starfield.png');
+                    background-size: cover;
+                    opacity: 1.0;
+                  }
+                  #change {
+                             position: absolute; 
+                            float: right;
+                            /* top: 100px; */
+                            margin-left: 650px;     
+                            height: 100%;
+                            text-align: center;
+                        } 
+                button {
+                        /* margin-left: 800px; */
+                        font-size: 20px;
+                        color: rgba(255, 255, 255, 0.75);
+                        background: transparent;
+                        /* outline: 1px solid rgba(127, 255, 255, 0.75); */
+                        border: 0px;
+                        padding: 10px 25px;
+                        cursor: pointer;
+                      }
+                    
+                button:hover {
+                  background-color: rgba(86, 179, 255, 0.5);
+                }
+
+                button:active {
+                  color: #000000;
+                  background-color: rgba(56, 121, 174, 0.75);
+                }
+                #earth{
+                  background-color: rgba(86, 179, 255, 0.5);
+                }
+          #content{
+                     height:750px;
+                     width:630px;
+                     float:right;
+          }
+          .sub_cover{
+                    width: 480px;
+                    height: 480px;
+                    margin-top: 10px;
+                    margin-left: 10px;
+                    border-radius: 50%;
+                    background-color: rgba(192,192,192,0.5);
+                    display:flex;
+                    align-items:center;
+                    justify-content:center;
+                    position:absolute;
+          }
+          .sub_frame{
+                    width: 600px;
+                    height: 600px;
+                    margin: 10px auto;
+                    position: relative;
+                    border: 2px darkgrey dotted;
+                    border-radius: 50%;
+                    top: 40%;
+                    transform: translateY(-50%);
+                }
+                #divcenter{  
+                    position:absolute;/*层漂浮*/  
+                    top:50%;  
+                    left:50%;  
+                    width:400px;  
+                    height:400px;  
+                    margin-top:-200px;/*注意这里必须是DIV高度的一半*/  
+                    margin-left:-200px;/*这里是DIV宽度的一半*/  
+                    border-radius: 50%;
+                    background-color: rgba(255,255,255, 0.2);
+
+                    /* background:yellow;   */
+                    /* border:1px solid red;   */
+                      }
+                  .neirong{
+                    position:absolute;/*层漂浮*/  
+                    top:82%;  
+                    left:63%;  
+                    width:307px;  
+                    height:411px;  
+                    margin-top:-200px;/*注意这里必须是DIV高度的一半*/  
+                    margin-left:-200px;/*这里是DIV宽度的一半*/  
+                    border-radius: 50%;
+                    font-size:20px;
+                    color: rgba(190,190,190);
+                    font-family: "楷体","楷体_GB2312";  
+                  }
+                
+        </style>
+    </head>
+    <body style="height: 100%; margin: 0">
+      <div class="cover">
+
+        <div id="change">
+           <button id="sun" onclick= "window.location.href = '../../index.html'">首页</button>
+          <button id="earth">地球月球</button>
+          <button id="moon" onclick= "window.location.href = '../pregenerated'">阴晴圆缺</button>
+          <!-- <button id="sun" onclick= "window.location.href = '../sunus-master'">日升日落</button> -->
+         <!-- <button id="showBGC">ShowBGC</button> -->
+          <!-- <button id="showImage">ShowImage</button> -->
+        </div>
+      
+      <div id="nav">
+        <div id="container" style="height: 100%"></div>
+      </div>
+      
+        <div id="divcenter">
+
+          <div class="neirong">月球，地球唯一的天然卫星，是我们永恒的伙伴。它已经绕着我们的星球旋转了数十亿年，在生命的第一颗火花在海洋中闪烁之前——在地球还没有冷却到可以拥有海洋之前。</div>
+        </div>
+      
+      <div id="content" >
+        <div id="container2" style="height: 100%"></div>
+      </div>
+    </div>
+        
+
+        
+        <script type="text/javascript" src="echarts.min.js"></script>
+        <script type="text/javascript" src="echarts-gl.min.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@{{version}}/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+var ROOT_PATH = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples'
+
+option = {
+  backgroundColor: '#000',
+  globe: {
+    baseTexture: ROOT_PATH + '/data-gl/asset/world.topo.bathy.200401.jpg',
+    heightTexture: ROOT_PATH + '/data-gl/asset/bathymetry_bw_composite_4k.jpg',
+    displacementScale: 0.2,
+    shading: 'realistic',
+    environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
+    realisticMaterial: {
+      roughness: ROOT_PATH + '/asset/get/s/data-1497599804873-H1SHkG-mZ.jpg',
+      metalness: ROOT_PATH + '/asset/get/s/data-1497599800643-BJbHyGWQW.jpg',
+      textureTiling: [8, 4]
+    },
+    postEffect: {
+      enable: true
+    },
+    viewControl: {
+      distance:300,
+      autoRotate: false
+    },
+    light: {
+      main: {
+        intensity: 2,
+        shadow: true
+      },
+      ambientCubemap: {
+        texture: ROOT_PATH + '/data-gl/asset/pisa.hdr',
+        exposure: 2,
+        diffuseIntensity: 2,
+        specularIntensity: 2
+      }
+    }
+  }
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+
+var dom2 = document.getElementById("container2");
+var myChart2 = echarts.init(dom2);
+var app2 = {};
+
+var option2;
+
+var ROOT_PATH2 = 'https://cdn.jsdelivr.net/gh/apache/echarts-website@asf-site/examples'
+
+option2 = {
+  globe: {
+    baseTexture: ROOT_PATH + '/data-gl/asset/moon-base.jpg',
+    heightTexture: ROOT_PATH + '/data-gl/asset/moon-bump.jpg',
+    displacementScale: 0.05,
+    displacementQuality: 'medium',
+    environment: ROOT_PATH + '/data-gl/asset/starfield.jpg',
+    shading: 'realistic',
+    realisticMaterial: {
+      roughness: 0.8,
+      metalness: 0
+    },
+    postEffect: {
+      enable: true,
+      SSAO: {
+        enable: true,
+        radius: 2,
+        intensity: 1,
+        quality: 'high'
+      }
+    },
+    temporalSuperSampling: {
+      enable: true
+    },
+    light: {
+      ambient: {
+        intensity: 0
+      },
+      main: {
+        intensity: 2,
+        shadow: true
+      },
+      ambientCubemap: {
+        texture: ROOT_PATH + '/data-gl/asset/pisa.hdr',
+        exposure: 0,
+        diffuseIntensity: 0.02
+      }
+    },
+    viewControl: {
+      distance:300,
+      autoRotate: false
+    }
+  },
+  series: []
+};
+
+if (option2 && typeof option2 === 'object') {
+    myChart2.setOption(option2);
+}
+
+        </script>
+    </body>
+</html>
+    

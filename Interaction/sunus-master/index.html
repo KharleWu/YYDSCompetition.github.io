@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1">
+  <title>sunus</title>
+  <link rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="./css/master.min.css">
+  <style>
+    h1{
+            text-align: center;
+            padding-top: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: normal;
+        }
+  </style>
+</head>
+
+<body>
+  <div id="back">
+    <button id="earth" onclick= "window.location.href = '../../index.html'">首页</button>
+  </div>
+  <div id="change">
+    <button id="earth" onclick= "window.location.href = '../myecharts'">地球月球</button>
+    <button id="moon" onclick= "window.location.href = '../pregenerated'">阴晴圆缺</button>
+    <button id="sun" >日升日落</button>
+   <!-- <button id="showBGC">ShowBGC</button> -->
+    <!-- <button id="showImage">ShowImage</button> -->
+  </div>
+  <h1 style="font-size:30px">Sunrise and Sunset</h1>
+  <main id="clock"></main>
+  <article>
+    <section>
+      <input type="datetime-local">
+    </section>
+    <section id="times"></section>
+    <section>
+      <!-- <p>times by <a href="https://sunrise-sunset.org/api" target="_blank">sunrise-sunset.org</a></p> -->
+    </section>
+  </article>
+
+
+  <script type="module">
+    import SunusClock from './js/SunusClock.js';
+    import SunusTable from './js/SunusTable.js';
+
+    // clock initialization
+    let clock, SunusCanvas;
+    clock = document.querySelector('#clock');
+    SunusCanvas = new SunusClock(clock);
+
+    // table initialization
+    let table, SunusTimetable;
+    table = document.querySelector('#times');
+    SunusTimetable = new SunusTable(table);
+
+    // handle datetime changes
+    let input;
+    input = document.querySelector('input[type="datetime-local"]');
+    input.addEventListener('change', function() {
+      let datetime;
+      datetime = new Date(input.value);
+      SunusCanvas.setDatetime(datetime);
+      SunusCanvas.drawClock();
+      SunusTimetable.setDatetime(datetime);
+      SunusTimetable.fill();
+      console.log(`redrawed to ${datetime}`);
+    });
+
+    // rendering of clock and table
+    let tryNo, interval;
+    tryNo = 0;
+    interval = setInterval(function() {
+      tryNo += 1;
+      // console.log(tryNo);
+      if (typeof SunusCanvas.degrees !== 'undefined') {
+        SunusCanvas.drawClock();
+        SunusTimetable.fill();
+        console.log(`drawing done after ${tryNo} tries`);
+        clearInterval(interval);
+      }
+    }, 1000);
+  </script>
+</body>
+
+</html>

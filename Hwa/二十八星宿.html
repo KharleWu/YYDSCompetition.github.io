@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/heatmap.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/treemap.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+        var data = {
+            "东方七宿": {
+                "角": {
+                    value: 2000,
+                },
+                "亢": {
+                    value: 1000,
+                },
+                "氐": {
+                    value: 3000,
+                },
+                "房": {
+                    value: 8000,
+                },
+                "心": {
+                    value: 2000,
+                },
+                "尾": {
+                    value: 2000,
+                },
+                "箕": {
+                    value: 1000,
+                }
+            },
+            "北方七宿": {
+                "斗": {
+                    value: 5000,
+                },
+                "牛": {
+                    value: 1000,
+                },
+                "女": {
+                    value: 1000,
+                },
+                "虚": {
+                    value: 1000,
+                },
+                "危": {
+                    value: 1000,
+                },
+                "室": {
+                    value: 1000,
+                },
+                "壁": {
+                    value: 1000,
+                }
+            },
+            "西方七宿": {
+                "奎": {
+                    value: 3000,
+                },
+                "娄": {
+                    value: 4000,
+                },
+                "胃": {
+                    value: 1000,
+                },
+                "昴": {
+                    value: 1000,
+                },
+                "毕": {
+                    value: 3000,
+                },
+                "觜": {
+                    value: 1000,
+                },
+                "参": {
+                    value: 2000,
+                }
+            },
+            "南方七宿": {
+                "井": {
+                    value: 1000,
+                },
+                "鬼": {
+                    value: 1000,
+                },
+                "柳": {
+                    value: 1000,
+                },
+                "心": {
+                    value: 1000,
+                },
+                "张": {
+                    value: 1000,
+                },
+                "翼": {
+                    value: 1000,
+                },
+                "轸": {
+                    value: 1000,
+                }
+            }
+        };
+        var points = [],
+            region_p,
+            region_val,
+            region_i,
+            country_p,
+            country_i,
+            cause_p,
+            cause_i,
+            cause_name = [];
+        cause_name['Communicable & other Group I'] = 'Communicable diseases';
+        cause_name['Noncommunicable diseases'] = 'Non-communicable diseases';
+        cause_name['Injuries'] = 'Injuries';
+        region_i = 0;
+        for (var region in data) {
+            region_val = 0;
+            region_p = {
+                id: "id_" + region_i,
+                name: region,
+                color: Highcharts.getOptions().colors[region_i]
+            };
+            country_i = 0;
+            for (var country in data[region]) {
+                country_p = {
+                    id: region_p.id + "_" + country_i,
+                    name: country,
+                    parent: region_p.id
+                };
+                points.push(country_p);
+                cause_i = 0;
+                for (var cause in data[region][country]) {
+                    cause_p = {
+                        id: country_p.id + "_" + cause_i,
+                        name: cause_name[cause],
+                        parent: country_p.id,
+                        value: Math.round(+data[region][country][cause])
+                    };
+                    region_val += cause_p.value;
+                    points.push(cause_p);
+                    cause_i++;
+                }
+                country_i++;
+            }
+            region_p.value = Math.round(region_val / country_i);
+            points.push(region_p);
+            region_i++;
+        }
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container'
+            },
+            series: [{
+                type: "treemap",
+                layoutAlgorithm: 'squarified',
+                allowDrillToNode: true,
+                dataLabels: {
+                    enabled: false
+                },
+                levelIsConstant: false,
+                levels: [{
+                    level: 1,
+                    dataLabels: {
+                        enabled: true
+                    },
+                    borderWidth: 3
+                }],
+                data: points
+            }],
+            title: {
+                text: '28星宿的东南西北划分'
+            }
+        });
+    </script>
+</body>
+
+</html>

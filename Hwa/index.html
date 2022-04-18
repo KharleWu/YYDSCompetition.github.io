@@ -1,0 +1,839 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>古人对于星象的探索</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <script src="https://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/wordcloud.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/oldie.js"></script>
+    <script src="static/js/calendar.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/heatmap.js"></script>
+    <script src="https://cdn.highcharts.com.cn/highcharts/modules/treemap.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    <link href="static/css/3aa2fc7b5d124b76b0b247268e6cef4f.css" rel="stylesheet" />
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="static/css/themify-icons.css" />
+    <link rel="stylesheet" href="static/css/besit-icons.css" />
+    <link rel="stylesheet" href="static/css/swiper.min.css" />
+    <link rel="stylesheet" href="static/css/magnific-popup.css">
+    <link rel="stylesheet" href="static/css/animate.min.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="icon" href="https://static.jianshukeji.com/hcode/images/favicon.ico">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <!-- 顶部 -->
+        <nav class="main-menu stricky">
+            <div class="container">
+                <ul class="main-menu__list one-page-scroll-menu">
+                    <li class="scrollToLink"><a href="../index.html">首页</a></li>
+                    &ensp;
+                    <li class="dropdown scrollToLink">
+                        <a href="#about">身边的星象</a>
+                        <ul>
+                            <li><a href="#shuru">日期里的星象</a></li>
+                            <li><a href="#xingxiu">星宿</a></li>
+                            <li><a href="#ganzhi">天干地支</a></li>
+                            <li><a href="#jieqi">节气</a></li>
+                        </ul>
+                    </li>
+                    &ensp;
+                    <li class="scrollToLink"><a href="#yueliang">月球的星象</a></li>
+                    &ensp;
+                    <li class="scrollToLink"><a href="#xingxiang">各朝代的星象</a></li>
+                    &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                    &ensp; &ensp; &ensp; &ensp;
+                    <li class="scrollToLink"><a href="#">古人对于星象的探索</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- 滚动播放 -->
+        <section class="main-slider">
+            <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true, "effect": "fade", "pagination": {
+			"el": "#main-slider-pagination",
+			"type": "bullets",
+			"clickable": true},
+            "autoplay": {
+			"delay": 5000}}'>
+                <div class="swiper-wrapper">
+                    <!-- 封面01 -->
+                    <div class="swiper-slide">
+                        <div class="image-layer" style="background-image: url(static/picture/宇宙1.jpeg);"></div>
+                        <div class="container">
+                            <div class="main-slider__box">
+                                <div class="block-title text-left">
+                                    <p><span></span>——</p>
+                                    <h3>身边的星象</h3>
+                                </div>
+                                <p>古人基于经验，通过有限的形象观察总结出了一套有趣且实用的理论，一起看看吧。</p>
+                                <a href="#about" class="thm-btn">点击跳转<i class="fa fa-arrow-circle-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 封面02 -->
+                    <div class="swiper-slide">
+                        <div class="image-layer" style="background-image: url(static/picture/月球1.jpeg);"></div>
+                        <div class="container">
+                            <div class="main-slider__box">
+                                <div class="block-title text-left">
+                                    <p><span></span>——</p>
+                                    <h3>月球的星象</h3>
+                                </div>
+                                <p>月亮作为离我们最近的一个天体，早就引起了古人们的好奇，人们也开始了对月亮的观测。</p>
+                                <a href="#yueliang" class="thm-btn">点击跳转<i class="fa fa-arrow-circle-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 封面03 -->
+                    <div class="swiper-slide">
+                        <div class="image-layer" style="background-image: url(static/picture/星象1.jpeg);"></div>
+                        <div class="container">
+                            <div class="main-slider__box">
+                                <div class="block-title text-left">
+                                    <p><span></span>——</p>
+                                    <h3>各朝代的星象</h3>
+                                </div>
+                                <p>史书中除了记载当朝当代的皇家事项，也会记载那些无法解释但是神奇的天象。</p>
+                                <a href="#xingxiang" class="thm-btn">点击跳转 <i class="fa fa-arrow-circle-right"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination" id="main-slider-pagination"></div>
+            </div>
+        </section>
+
+        <!-- 身边的信息 -->
+        <section class="project-one" id="about">
+            <!-- 标题部分 -->
+            <div class="container">
+                <div class="project-one__top">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="block-title text-left">
+                                <p><span></span>与你相关的星象</p>
+                                <h3>
+                                    普通日子里的那些星象
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <p class="project-one__top-text">古时候的人们虽然没有现在先进的观测工具和技术，但他们也在简单的日常中借用经验和观察摸索出了节气、天干地支等简单却十分实用的天象知识</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 圆盘部分 -->
+            <div class="circle-progress__4-col">
+                <!-- 节气 -->
+                <div class="circle-progress__single">
+                    <div class="circle-progress" data-options='{ "value": 0.8,"emptyFill": "rgba(234, 234, 234, 1)","lineCap": "round", "size": 230, "fill": { "color": "#fe0040" } }'>
+                        <span>24</span>
+                    </div>
+                    <h3>节气</h3>
+                    <p>立春|雨水|惊蛰|春分|清明|谷雨</p>
+                    <p>立夏|小满|芒种|夏至|小暑|大暑</p>
+                    <p>立秋|处暑|白露|秋分|寒露|霜降</p>
+                    <p>立冬|小雪|大雪|冬至|小寒|大寒</p>
+                </div>
+                <!-- 天干 -->
+                <div class="circle-progress__single">
+                    <div class="circle-progress" data-options='{ "value": 0.33,"emptyFill": "rgba(234, 234, 234, 1)","lineCap": "round", "size": 230, "fill": { "color": "#fe0040" } }'>
+                        <span>10</span>
+                    </div>
+                    <h3>天干</h3>
+                    <p>_</p>
+                    <p>甲｜乙｜丙｜丁｜戊</p>
+                    <p>己｜庚｜辛｜壬｜癸</p>
+                    <p>_</p>
+                </div>
+                <!-- 地支 -->
+                <div class="circle-progress__single">
+                    <div class="circle-progress" data-options='{ "value": 0.4,"emptyFill": "rgba(234, 234, 234, 1)","lineCap": "round", "size": 230, "fill": { "color": "#fe0040" } }'>
+                        <span>12</span>
+                    </div>
+                    <h3>地支</h3>
+                    <p>子(鼠)｜丑(牛)｜寅(虎)</p>
+                    <p>卯(兔)｜辰(龙)｜巳(蛇)</p>
+                    <p>午(马)｜未(羊)｜申(猴)</p>
+                    <p>酉(鸡)｜戌(狗)｜亥(猪)</p>
+                </div>
+                <!-- 星宿 -->
+                <div class="circle-progress__single">
+                    <div class="circle-progress" data-options='{ "value": 0.933,"emptyFill": "rgba(234, 234, 234, 1)","lineCap": "round", "size": 230, "fill": { "color": "#fe0040" } }'>
+                        <span>28</span>
+                    </div>
+                    <h3>星宿</h3>
+                    <p>角｜亢｜氐｜房｜心｜尾｜箕</p>
+                    <p>井｜鬼｜柳｜星｜张｜翼｜轸</p>
+                    <p>奎｜娄｜胃｜昴｜毕｜觜｜参</p>
+                    <p>斗｜牛｜女｜虚｜危｜室｜壁</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 输入 -->
+        <section class="project-one" id="shuru">
+            <div class="container">
+                <!-- 输入日期部分 -->
+                <div class="inner-container">
+                    <div class="row align-items-end">
+                        <div class="col-sm-12 col-md-12 col-lg-7">
+                            <form action="#" class="contact-one__form">
+                                <h3>挑个日子输入看看会发生什么呢？</h3>
+                                <h5>日期输入范围：1900.1.31~2100.12.31</h5>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <p>年份</p>
+                                            <input class="Year" type="number" placeholder="请输入公历年份" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <p>月份</p>
+                                            <input class="Month" type="number" placeholder="请输入公历月份" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <p>日期</p>
+                                            <input class="Date" type="number" placeholder="请输入公历日期" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-12 col-md-12">
+                                        <a><button type="button" class="button">提交</button></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-sm-12 col-md-12 col-lg-5 text-center text-md-center text-lg-center text-xl-left">
+                            <form id="formDemo">
+                                <textarea id="result" class="result"></textarea>
+                                <style type="text/css">
+                                    textarea {
+                                        width: 500px;
+                                        min-height: 450px;
+                                        border: 1px solid #ccc;
+                                        background-color: #fff;
+                                        border-radius: 5px;
+                                        outline: none;
+                                    }
+                                </style>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 词云图部分 -->
+                <div id="container">
+                    <script type="text/javascript">
+                        document.querySelector("button").onclick = function() {
+                            let Y = parseInt(document.querySelector("input.Year").value);
+                            let M = parseInt(document.querySelector("input.Month").value);
+                            let D = parseInt(document.querySelector("input.Date").value);
+                            document.getElementById("result").value = JSON.stringify(calendar.solar2lunar(Y, M, D), null, 4);
+                            var arrci = calendar.ciyundata(Y, M, D);
+                            console.log(arrci);
+                            var data = [];
+                            data.push({
+                                name: "阳历" + arrci.solarDate,
+                                weight: 2
+                            });
+                            data.push({
+                                name: "阴历" + arrci.lunarDate,
+                                weight: 2
+                            });
+                            data.push({
+                                name: arrci.ani,
+                                weight: 5
+                            });
+                            data.push({
+                                name: arrci.astro,
+                                weight: 4
+                            });
+                            data.push({
+                                name: arrci.gzY,
+                                weight: 8
+                            });
+                            data.push({
+                                name: arrci.gzM,
+                                weight: 7
+                            });
+                            data.push({
+                                name: arrci.gzD,
+                                weight: 6
+                            });
+                            data.push({
+                                name: arrci.ncWeek,
+                                weight: 3
+                            });
+                            data.push({
+                                name: arrci.nongli,
+                                weight: 2
+                            });
+                            data.push({
+                                name: arrci.Term,
+                                weight: 3
+                            });
+                            console.log(data[0]);
+                            Highcharts.chart('container', {
+                                series: [{
+                                    type: 'wordcloud',
+                                    data: data
+                                }],
+                                title: {
+                                    text: '词云图'
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        </section>
+
+        <!-- 星宿部分 -->
+        <section class="project-one" id="xingxiu">
+            <div class="container">
+                <div class="row">
+                    <!-- 左半边 -->
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1500ms">
+                        <div class="about-one__images">
+                            <img src="static/picture/星宿图.webp" alt="">
+                            <img src="static/picture/123.gif" alt="">
+                            <div class="about-one__images-content text-center">
+                                <h3>28</h3>
+                                <p>星宿</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右半边 -->
+                    <div class="col-lg-6">
+                        <div class="about-one__content">
+                            <div class="block-title text-left">
+                                <p><span></span>关于星宿</p>
+                            </div>
+                            <p>二十八星宿，是我国古代天文学家为观测日、月、五星运行而划分的二十八个星区，由东方青龙、南方朱雀、西方白虎、北方玄武各七宿组成。</p>
+                            <p>公元四五千年前，中国就开始天文观测，以后积累了大量文献资料。古人总把世界的全部看作是个整体，认为星空的变化，关系着地上人们的吉凶祸福，认为人事变迁、灾害和天气，都可从天象得到预兆。所以，不管研究历史、灾害、气候变化等等，涉及古代文献，都会碰到天象记录。</p>
+                            <p>以二十八宿轮流值日记日法，是以一宿代表一日，二十八宿代表二十八日，周而复始。二十八日为一个周期，正好四个星期轮流一个周期。</p>
+                            <p>二十八宿是之东南西北各有七宿，其星数并非一样，东方七宿有三十二星，南方七宿有六十四星，西方七宿有五十一星，北方方七宿有三十五星，全部共有一百八十二星，循着一定的轨道运行，我们称之为「黄道」。</p>
+                            <!--
+                            <div class="about-one__box">
+                                <i class="besit-icon-medal"></i>
+                                <div class="about-one__box-content">
+                                    <h3>Business Solutions​</h3>
+                                    <p>Medixer Care will be administered through plan-based omizable incorporate partnership between family.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="about-one__box">
+                                <i class="besit-icon-clock1"></i>
+                                <div class="about-one__box-content">
+                                    <h3>24/7 Support</h3>
+                                    <p>Medixer Care will be administered through plan-based omizable incorporate partnership between family.
+                                    </p>
+                                </div>
+                            </div>
+                            -->
+
+                            <!-- 链接 -->
+                            <div class="about-one__call">
+                                <a href="https://baike.baidu.com/item/%E4%BA%8C%E5%8D%81%E5%85%AB%E6%98%9F%E5%AE%BF/675?fr=aladdin" class="thm-btn">关于星宿的更多信息
+                                    <i class="fa fa-arrow-circle-right"></i> 
+                                </a> &nbsp &nbsp &nbsp
+                                <a href="二十八星宿.html" class="thm-btn">东西南北星宿的分类
+                                    <i class="fa fa-arrow-circle-right"></i> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 天干地支部分 -->
+        <section class="project-one" id="ganzhi">
+            <div class="container">
+                <div class="row">
+
+                    <!-- 左半边 -->
+                    <div class="col-lg-6">
+                        <div class="about-one__content">
+                            <div class="block-title text-left">
+                                <p><span></span>关于天干地支</p>
+                            </div>
+                            <p>天干地支，简称干支，源自中国远古时代对天象的观测。十干是阏逢、旃蒙 &nbsp 、柔兆、强圉、著雍、屠维、上章、重光、玄黓、昭阳。十二支是困敦、赤奋 &nbsp 若、摄提格、单阏、执徐、大荒落、敦牂、协洽、涒滩、作噩、阉茂、大渊 &nbsp 献。</p>
+                            <p>简化后的天干地支：“甲、乙、丙、丁、戊、己、庚、辛、壬、癸”称为十天干，“子、丑、寅、卯、辰、巳、午、未、申、酉、戌、亥”称为十二地支。</p>
+                            <p>干支除了被用于纪年中，还被广泛运用于纪月、纪日、纪时、节气等</p>
+                            <div class="about-one__box">
+                                <i class="besit-icon-document"></i>
+                                <div class="about-one__box-content">
+                                    <h3>组合规律：阳干配阳支，阴干配阴支</h3>
+                                    <p>阳干：甲｜丙｜戊｜庚｜壬 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 阴干：乙｜丁｜己｜辛｜癸</p>
+                                    <p>阳支：子｜寅｜辰｜午｜申｜戌 &nbsp &nbsp 阴支：丑｜卯｜巳｜未｜酉｜亥</p>
+                                </div>
+                            </div>
+                            <!-- 链接 -->
+                            <div class="about-one__call">
+                                <a href="https://baike.baidu.com/item/%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF/278140?fr=aladdin" class="thm-btn">关于天干地支的更多信息
+                                    <i class="fa fa-arrow-circle-right"></i> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 右半边 -->
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1500ms">
+                        <div class="about-one__images">
+                            <img src="static/picture/天干地支3.jpeg" alt="">
+                            <div class="about-one__images-content text-center">
+                                <h3>60</h3>
+                                <p>天干地支</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 节气部分-->
+        <section class="project-one" id="jieqi">
+            <div class="container">
+                <div class="row">
+                    <!-- 左半边 -->
+                    <div class="col-lg-6 wow fadeInLeft" data-wow-duration="1500ms">
+                        <div class="about-one__images">
+                            <img src="static/picture/节气3.jpeg" alt="">
+                            <img src="static/picture/节气3.jpeg" alt="">
+                            <div class="about-one__images-content text-center">
+                                <h3>24</h3>
+                                <p>节气</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右半边 -->
+                    <div class="col-lg-6">
+                        <div class="about-one__content">
+                            <div class="block-title text-left">
+                                <p><span></span>关于节气</p>
+                            </div>
+                            <p>节气是上古先民顺应农时，通过观察天体运行，认知一岁中时候、气候、物候等方面变化规律所形成的知识体系。它科学地揭示了天文气象变化的规律，将天文、农事、物候和民俗实现巧妙的结合，衍生大量与之相关的岁时节令文化。</p>
+                            <p>天维建元，是从寅开始的，斗柄从正东偏北（寅位，后天八卦艮位）开始，顺时针旋转一圈，岁末十二月指丑方，正月又复还寅位；“斗柄回寅”，终而复始、万象更新，新的一个轮回由此开启。斗指寅为立春，斗指壬为雨水，斗指丁为惊蛰，……斗指丑为大寒。</p>
+                            <p>现行的“二十四节气”来自于三百多年前订立的“黄经度数法”，“黄经度数法”是根据太阳在回归黄道上的位置来确定节气的方法，即在一个为360度圆周的“黄道”（一年当中太阳在天球上的视路径）上，划分为24等份，每15°为1等份，以春分点为0度起点（排序上仍把立春列为首位），按黄经度数编排。</p>
+                            <!--
+                            <div class="about-one__box">
+                                <i class="besit-icon-medal"></i>
+                                <div class="about-one__box-content">
+                                    <h3>Business Solutions​</h3>
+                                    <p>Medixer Care will be administered through plan-based omizable incorporate partnership between family.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="about-one__box">
+                                <i class="besit-icon-clock1"></i>
+                                <div class="about-one__box-content">
+                                    <h3>24/7 Support</h3>
+                                    <p>Medixer Care will be administered through plan-based omizable incorporate partnership between family.
+                                    </p>
+                                </div>
+                            </div>
+                            -->
+
+                            <!-- 链接 -->
+                            <div class="about-one__call">
+                                <a href="https://baike.baidu.com/item/%E8%8A%82%E6%B0%94/453238?fr=aladdin" class="thm-btn">关于节气的更多信息
+                                    <i class="fa fa-arrow-circle-right"></i> 
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 月球部分 -->
+        <section class="project-one" id="yueliang">
+            <div class="container">
+                <div class="block-title text-center">
+                    <p><span></span>与月亮相关的星象</p>
+                    <h3>
+                        历代月行星记录
+                    </h3>
+                </div>
+                <div id="cont" style="height: 500%"></div>
+                <!-- 月行星可视化内容 -->
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
+                <script type="text/javascript">
+                    var dom = document.getElementById("cont");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    var option;
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'cross',
+                                crossStyle: {
+                                    color: '#999'
+                                }
+                            }
+                        },
+                        toolbox: {
+                            feature: {
+                                dataView: {
+                                    show: true,
+                                    readOnly: false
+                                },
+                                magicType: {
+                                    show: true,
+                                    type: ['line', 'bar']
+                                },
+                                restore: {
+                                    show: true
+                                },
+                                saveAsImage: {
+                                    show: true
+                                }
+                            }
+                        },
+                        legend: {
+                            data: ['正确的天象记录', '错误的天象记录', '错误率']
+                        },
+                        xAxis: [{
+                            type: 'category',
+                            data: ['汉魏晋', '南朝', '北朝', '隋唐五代', '宋', '金', '元', '明'],
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        }],
+                        yAxis: [{
+                            type: 'value',
+                            name: '天象记录数',
+                            min: 0,
+                            max: 5000,
+                            interval: 500,
+                            axisLabel: {
+                                formatter: '{value} '
+                            }
+                        }, {
+                            type: 'value',
+                            name: '错误率',
+                            min: 0,
+                            max: 1,
+                            interval: 0.1,
+                            axisLabel: {
+                                formatter: '{value}'
+                            }
+                        }],
+                        series: [{
+                            name: '正确的天象记录',
+                            type: 'bar',
+                            tooltip: {
+                                valueFormatter: function(value) {
+                                    return value;
+                                }
+                            },
+                            data: [465, 544, 586, 447, 4755, 196, 1415, 2514]
+                        }, {
+                            name: '错误的天象记录',
+                            type: 'bar',
+                            tooltip: {
+                                valueFormatter: function(value) {
+                                    return value;
+                                }
+                            },
+                            data: [190, 96, 120, 165, 523, 32, 61, 108]
+                        }, {
+                            name: '错误率',
+                            type: 'line',
+                            yAxisIndex: 1,
+                            tooltip: {
+                                valueFormatter: function(value) {
+                                    return value;
+                                }
+                            },
+                            data: [0.29, 0.15, 0.17, 0.27, 0.099, 0.14, 0.041, 0.041]
+                        }]
+                    };
+
+                    if (option && typeof option === 'object') {
+                        myChart.setOption(option);
+                    }
+                </script>
+                <p>中国古人很早就有对月亮的观测，从人尽皆知的嫦娥奔月故事到一首一首动人的诗词，人们一直都给予了这个地球的卫星特别的关注。上面的数据包含了历代史书典籍中对于月食、月行星位置等的记录。</p>
+                <p>从图中我们不难发现，总体的错误率呈现一个下降的趋势，说明随时间推移，人们的观测能力和技术有了提升。其中，宋朝的数据相当亮眼，一定程度上也显示出当时人们对于科学和宇宙探索的热情很高</p>
+            </div>
+        </section>
+
+        <!-- 星象部分 -->
+        <section class="project-one" id="xingxiang">
+            <div class="container">
+                <div class="block-title text-center">
+                    <p><span></span>各朝代的星象</p>
+                    <h3>
+                        历代星象数据的记录
+                    </h3>
+                </div>
+                <div id="cont_2" style="height: 700%"></div>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js"></script>
+                <script type="text/javascript">
+                    var dom = document.getElementById("cont_2");
+                    var myChart = echarts.init(dom);
+                    var app = {};
+                    var option;
+
+                    option = {
+                        angleAxis: {},
+                        radiusAxis: {
+                            type: 'category',
+                            data: ['两汉魏晋', '隋唐五代', '宋代', '明代'],
+                            z: 10
+                        },
+                        polar: {},
+                        series: [{
+                            type: 'bar',
+                            data: [227, 140, 142, 105],
+                            coordinateSystem: 'polar',
+                            name: '日食',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [9, 116, 241, 231],
+                            coordinateSystem: 'polar',
+                            name: '月食',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [498, 119, 0, 0],
+                            coordinateSystem: 'polar',
+                            name: '行星',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [101, 59, 203, 323],
+                            coordinateSystem: 'polar',
+                            name: '昼见',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [114, 129, 1453, 2248],
+                            coordinateSystem: 'polar',
+                            name: '流陨',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 141, 62, 0],
+                            coordinateSystem: 'polar',
+                            name: '慧孛',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 581, 186, 0],
+                            coordinateSystem: 'polar',
+                            name: '月五星',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [284, 64, 2682, 0],
+                            coordinateSystem: 'polar',
+                            name: '月犯',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 20, 0, 0],
+                            coordinateSystem: 'polar',
+                            name: '流星',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 0, 0, 1457],
+                            coordinateSystem: 'polar',
+                            name: '月恒',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 0, 0, 121],
+                            coordinateSystem: 'polar',
+                            name: '月行',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 0, 0, 927],
+                            coordinateSystem: 'polar',
+                            name: '行恒',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 0, 0, 117],
+                            coordinateSystem: 'polar',
+                            name: '行行',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [224, 0, 53, 218],
+                            coordinateSystem: 'polar',
+                            name: '慧客',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 0, 188, 634],
+                            coordinateSystem: 'polar',
+                            name: '云气',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [0, 0, 163, 58],
+                            coordinateSystem: 'polar',
+                            name: '老人',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }, {
+                            type: 'bar',
+                            data: [124, 135, 220, 186],
+                            coordinateSystem: 'polar',
+                            name: '其他',
+                            stack: 'a',
+                            emphasis: {
+                                focus: 'series'
+                            }
+                        }],
+                        legend: {
+                            show: true,
+                            data: ['日食', '月食', '行星', '昼见', '流陨', '慧孛', '月五星', '月犯', '流星', '月恒', '月行', '行恒', '行行', '慧客', '云气', '老人', '其他']
+                        }
+                    };
+
+                    if (option && typeof option === 'object') {
+                        myChart.setOption(option);
+                    }
+                </script>
+                <p>中国古代有观察记录天象的传统，流传至今的文献中含有大量的天象记载。最早的记录当推《尚书·胤征》记载夏初仲康时期"辰弗集于房"日食，其后有“三苗”、“天大噎”、“天再旦”、“十月之交”等日食线索。有明确日期和现象的记录从春秋时期开始。</p>
+                <p>上图数据来自《汉书》、《史记》、《隋书》、《旧唐书》、《新唐书》、《五代会要》、《宋史》、《明实录》等古籍，不同朝代对于天象的观察种类区分不同，甚至同类型天象的命名方式亦有差异，但根绝结果不难看出，随时间流逝，人们对于星象的观测更加细致，记录也更多了。</p>
+            </div>
+        </section>
+
+        <br/>
+        <br/>
+
+        <!-- 尾页 -->
+        <footer class="main-footer">
+            <div class="upper-footer">
+                <div class="container">
+                    <div class="row">
+                        <!-- 左侧总结 -->
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+                            <div class="footer-widget footer-widget__about">
+                                <h2>古人对于星象的探索</h2>
+                                <p>
+                                    长久以来，人们都对天上的事物充满了好奇，上述的整理仅为古人对天象探索的很小一部分，人类的智慧是无穷的......
+                                </p>
+                            </div>
+                        </div>
+                        &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; &ensp;
+                        <!-- 中间的链接-->
+                        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
+                            <div class="footer-widget footer-widget__links-widget">
+                                <h3 class="footer-widget__title">一些天文网站</h3>
+                                <ul class="list-unstyled footer-widget__links">
+                                    <li><a href="https://nadc.china-vo.org/data/">国家天文科学数据中心</a></li>
+                                    <li><a href="http://www.kepu.com.cn/gb/beyond/astronomy/index.html">中国科普博览--天文馆</a></li>
+                                    <li><a href="https://www.nasa.gov/">美国国家宇航局(NASA)</a></li>
+                                    <li><a href="https://www.iau.org/">国际天文联合会</a></li>
+                                    <li><a href="https://www.cnki.net/">中国知网</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 回到顶部 -->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
+            <div class="logo-box">
+                <a href="index.html"><img src="static/picture/logo-light.png" alt="" /></a>
+            </div>
+            <div class="mobile-nav__container"></div>
+        </div>
+    </div>
+
+    <script src="static/js/jquery-3.5.1.min.js"></script>
+    <script src="static/js/swiper.min.js"></script>
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+    <script src="static/js/circle-progress.min.js"></script>
+    <script src="static/js/wow.js"></script>
+    <script src="static/js/jquery.appear.min.js"></script>
+    <script src="static/js/jquery.easing.min.js"></script>
+    <script src="static/js/jquery.magnific-popup.min.js"></script>
+    <script src="static/js/theme.js"></script>
+
+</body>
+
+</html>
