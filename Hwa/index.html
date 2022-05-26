@@ -245,60 +245,111 @@
                             let Y = parseInt(document.querySelector("input.Year").value);
                             let M = parseInt(document.querySelector("input.Month").value);
                             let D = parseInt(document.querySelector("input.Date").value);
-                            document.getElementById("result").value = JSON.stringify(calendar.solar2lunar(Y, M, D), null, 4);
-                            var arrci = calendar.ciyundata(Y, M, D);
-                            console.log(arrci);
-                            var data = [];
-                            data.push({
-                                name: "阳历" + arrci.solarDate,
-                                weight: 2
-                            });
-                            data.push({
-                                name: "阴历" + arrci.lunarDate,
-                                weight: 2
-                            });
-                            data.push({
-                                name: arrci.ani,
-                                weight: 5
-                            });
-                            data.push({
-                                name: arrci.astro,
-                                weight: 4
-                            });
-                            data.push({
-                                name: arrci.gzY,
-                                weight: 8
-                            });
-                            data.push({
-                                name: arrci.gzM,
-                                weight: 7
-                            });
-                            data.push({
-                                name: arrci.gzD,
-                                weight: 6
-                            });
-                            data.push({
-                                name: arrci.ncWeek,
-                                weight: 3
-                            });
-                            data.push({
-                                name: arrci.nongli,
-                                weight: 2
-                            });
-                            data.push({
-                                name: arrci.Term,
-                                weight: 3
-                            });
-                            console.log(data[0]);
-                            Highcharts.chart('container', {
-                                series: [{
-                                    type: 'wordcloud',
-                                    data: data
-                                }],
-                                title: {
-                                    text: '词云图'
+                            let flag = 1;
+                            if (Y > 2100 || Y < 1900) {
+                                alert("年份输入不符合要求")
+                                flag = 0
+                            } else if (M > 12 || M < 0) {
+                                alert("月份输入不符合要求")
+                                flag = 0
+                            } else if (Y == 1900 && M == 1) {
+                                if (D != 31) {
+                                    alert("输入日期不在要求范围内")
+                                    flag = 0
                                 }
-                            });
+                            } else if (M == 1 || M == 3 || M == 5 || M == 7 || M == 8 || M == 10 || M == 12) {
+                                if (D < 1 || D > 31) {
+                                    alert("日期输入不符合要求")
+                                    flag = 0
+                                }
+                            } else if (M == 4 || M == 6 || M == 9 || M == 11) {
+                                if (D < 1 || D > 30) {
+                                    alert("日期输入不符合要求")
+                                    flag = 0
+                                }
+                            } else if (M == 2) {
+                                if (Y % 100 == 0) {
+                                    if (Y % 400 != 0) {
+                                        if (D < 1 || D > 28) {
+                                            alert("日期输入不符合要求")
+                                            flag = 0
+                                        }
+                                    } else {
+                                        if (D < 1 || D > 29) {
+                                            alert("日期输入不符合要求")
+                                            flag = 0
+                                        }
+                                    }
+                                } else {
+                                    if (Y % 4 != 0) {
+                                        if (D < 1 || D > 28) {
+                                            alert("日期输入不符合要求")
+                                            flag = 0
+                                        }
+                                    } else {
+                                        if (D < 1 || D > 29) {
+                                            alert("日期输入不符合要求")
+                                            flag = 0
+                                        }
+                                    }
+                                }
+                            }
+                            if (flag == 1) {
+                                document.getElementById("result").value = JSON.stringify(calendar.solar2lunar(Y, M, D), null, 4);
+                                var arrci = calendar.ciyundata(Y, M, D);
+                                console.log(arrci);
+                                var data = [];
+                                data.push({
+                                    name: "阳历" + arrci.solarDate,
+                                    weight: 2
+                                });
+                                data.push({
+                                    name: "阴历" + arrci.lunarDate,
+                                    weight: 2
+                                });
+                                data.push({
+                                    name: arrci.ani,
+                                    weight: 5
+                                });
+                                data.push({
+                                    name: arrci.astro,
+                                    weight: 4
+                                });
+                                data.push({
+                                    name: arrci.gzY,
+                                    weight: 8
+                                });
+                                data.push({
+                                    name: arrci.gzM,
+                                    weight: 7
+                                });
+                                data.push({
+                                    name: arrci.gzD,
+                                    weight: 6
+                                });
+                                data.push({
+                                    name: arrci.ncWeek,
+                                    weight: 3
+                                });
+                                data.push({
+                                    name: arrci.nongli,
+                                    weight: 2
+                                });
+                                data.push({
+                                    name: arrci.Term,
+                                    weight: 3
+                                });
+                                console.log(data[0]);
+                                Highcharts.chart('container', {
+                                    series: [{
+                                        type: 'wordcloud',
+                                        data: data
+                                    }],
+                                    title: {
+                                        text: '词云图'
+                                    }
+                                });
+                            }
                         }
                     </script>
                 </div>
